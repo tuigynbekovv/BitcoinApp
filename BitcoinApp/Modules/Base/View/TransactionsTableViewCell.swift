@@ -13,7 +13,7 @@ class TransactionsTableViewCell: UITableViewCell {
     lazy var icon = UIImageView(image: #imageLiteral(resourceName: "bitcoin-1"))
     lazy var transactionID: UILabel = {
         let label = UILabel()
-        label.text = "Bitcoin_id"; label.textColor = .black; label.font = UIFont.init(name: Font.mullerMedium, size: 20);
+        label.text = "bitcoin_id"; label.textColor = .black; label.font = UIFont.init(name: Font.mullerMedium, size: 18);
         return label
     }()
     lazy var date: UILabel = {
@@ -23,7 +23,7 @@ class TransactionsTableViewCell: UITableViewCell {
     }()
     lazy var price: UILabel = {
         let label = UILabel()
-        label.text = "200 000.0"; label.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1); label.font = UIFont.init(name: Font.mullerBold, size: 18);
+        label.text = "200 000.00"; label.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1); label.font = UIFont.init(name: Font.mullerBold, size: 20);
         return label
     }()
     lazy var amount: UILabel = {
@@ -33,7 +33,7 @@ class TransactionsTableViewCell: UITableViewCell {
     }()
     lazy var type: UILabel = {
         let label = UILabel()
-        label.text = "buy/sell"; label.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1); label.font = UIFont.init(name: Font.mullerRegular, size: 19);
+        label.text = "buy/sell"; label.textColor = #colorLiteral(red: 0.7843137255, green: 0.2039215686, blue: 0.2784313725, alpha: 1); label.font = UIFont.init(name: Font.mullerRegular, size: 19);
         return label
     }()
     

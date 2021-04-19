@@ -10,12 +10,14 @@ import UIKit
 class TransactionsViewController: BaseViewController {
     
     // MARK: - Properties
+    lazy var headerView = HeaderView()
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TransactionsTableViewCell.self, forCellReuseIdentifier: TransactionsTableViewCell.cellIdentifier())
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
+        table.delegate = self; table.dataSource = self; table.separatorStyle = .none
+        let header = headerView
+        header.frame.size = CGSize(width: 0, height: 100)
+        table.tableHeaderView = header
         return table
     }()
     

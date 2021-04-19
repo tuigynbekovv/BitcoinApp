@@ -14,6 +14,7 @@
 		53A64FF2262D631500E45408 /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A64FF1262D631500E45408 /* TransactionsViewController.swift */; };
 		53A64FF5262D672100E45408 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A64FF4262D672100E45408 /* BaseViewController.swift */; };
 		53A64FF9262D6F6E00E45408 /* TransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A64FF8262D6F6E00E45408 /* TransactionsTableViewCell.swift */; };
+		53A64FFC262D7EC800E45408 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A64FFB262D7EC800E45408 /* HeaderView.swift */; };
 		53E1E7DF262D601600F44E19 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E1E7DE262D601600F44E19 /* AppConstant.swift */; };
 		53E1E7E6262D604C00F44E19 /* MullerBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53E1E7E2262D604C00F44E19 /* MullerBlack.otf */; };
 		53E1E7E7262D604C00F44E19 /* MullerRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53E1E7E3262D604C00F44E19 /* MullerRegular.otf */; };
@@ -35,6 +36,7 @@
 		53A64FF1262D631500E45408 /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		53A64FF4262D672100E45408 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		53A64FF8262D6F6E00E45408 /* TransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		53A64FFB262D7EC800E45408 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		53E1E7DE262D601600F44E19 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		53E1E7E2262D604C00F44E19 /* MullerBlack.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MullerBlack.otf; sourceTree = "<group>"; };
 		53E1E7E3262D604C00F44E19 /* MullerRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MullerRegular.otf; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				53A64FF8262D6F6E00E45408 /* TransactionsTableViewCell.swift */,
+				53A64FFB262D7EC800E45408 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53E1E7EC262D609C00F44E19 /* Extension.swift in Sources */,
+				53A64FFC262D7EC800E45408 /* HeaderView.swift in Sources */,
 				5355315A262D5E9500975F91 /* AppDelegate.swift in Sources */,
 				53A64FF2262D631500E45408 /* TransactionsViewController.swift in Sources */,
 				53E1E7DF262D601600F44E19 /* AppConstant.swift in Sources */,
