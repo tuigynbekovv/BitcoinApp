@@ -21,7 +21,7 @@ import SnapKit
     - Евро (EUR)
     - Тенге (KZT) .
 */
-
+//
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
