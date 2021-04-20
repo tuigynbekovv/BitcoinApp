@@ -8,5 +8,6 @@ target 'BitcoinApp' do
   # Pods for BitcoinApp
 
   pod 'SnapKit'
+  pod 'MBProgressHUD', '~> 1.1.0'
 
 end

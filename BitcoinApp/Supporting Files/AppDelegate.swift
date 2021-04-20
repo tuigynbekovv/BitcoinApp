@@ -21,7 +21,7 @@ import SnapKit
     - Евро (EUR)
     - Тенге (KZT) .
 */
-//
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,7 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupNeeds() {
+        
         if #available(iOS 13.0, *) { window?.overrideUserInterfaceStyle = .light }
+        
     }
 
 }

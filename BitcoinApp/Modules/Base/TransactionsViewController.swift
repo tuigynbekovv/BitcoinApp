@@ -9,13 +9,23 @@ import UIKit
 
 class TransactionsViewController: BaseViewController {
     
+    var transactionsArray = [TransactionsModel]()
+    
     // MARK: - Properties
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
+    lazy var headerView = HeaderView()
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TransactionsTableViewCell.self, forCellReuseIdentifier: TransactionsTableViewCell.cellIdentifier())
-        table.delegate = self
-        table.dataSource = self
-        table.separatorStyle = .none
+        table.delegate = self; table.dataSource = self; //table.separatorStyle = .none
+        let header = headerView
+        header.frame.size = CGSize(width: 0, height: 80)
+        table.tableHeaderView = header
+        table.refreshControl = refreshControl
         return table
     }()
     
@@ -25,10 +35,19 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
+        getLive()
     }
     
     
-    // MARK: - SetupViews
+    // MARK: - Simple Functions
+    func addingHeader(model: LiveModel) {
+        headerView.date.text = "".convertTimesTamp(model.timestamp)
+        headerView.highTitle.text = "High: " + model.high + " $"
+        headerView.lowTitle.text = "Low: " + model.low + " $"
+    }
+    
+    
+    // MARK: - Autolayout
     func setupViews() {
         view.addSubviews([tableView])
         
@@ -36,26 +55,60 @@ class TransactionsViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
+    
+    
+    // MARK: - Actions
+    @objc private func refresh() -> Void {
+        refreshControl.endRefreshing()
+    }
 }
 
 
 // MARK: - UITableView Protocols
 extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return transactionsArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionsTableViewCell.cellIdentifier(), for: indexPath) as! TransactionsTableViewCell
         
+        cell.configure(model: transactionsArray[indexPath.row])
+        
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+
+// MARK: - Parser
+extension TransactionsViewController {
+    private func getLive() -> Void {
+        showHUD()
+        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/ticker") { (result: LiveModel?, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.addingHeader(model: result!)
+            self.getTransactions()
+        }
+    }
+    private func getTransactions() -> Void {
+        let parameter: [String : Any] = ["offset": 0, "limit": 500, "sort": "desc"]
+        
+        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/transactions/", parameters: parameter) { (result: [TransactionsModel]?, error) in
+            self.dismissHUD()
+            if let error = error {
+                print(error)
+                return
+            }
+            self.transactionsArray = result!
+            self.tableView.reloadData()
+        }
     }
 }

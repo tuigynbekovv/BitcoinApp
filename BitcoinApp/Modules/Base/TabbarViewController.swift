@@ -25,7 +25,7 @@ class TabbarViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK:- Setup functions
     func setupTabbar() {
         let vc1 = UINavigationController.init(rootViewController: TransactionsViewController());
-        vc1.tabBarItem.title = "TradeView"; vc1.tabBarItem.image = #imageLiteral(resourceName: "stock-market");
+        vc1.tabBarItem.title = "Trade View"; vc1.tabBarItem.image = #imageLiteral(resourceName: "stock-market");
         
         viewControllers = [vc1]
     }
