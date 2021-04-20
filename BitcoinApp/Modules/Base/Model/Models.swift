@@ -14,3 +14,10 @@ struct TransactionsModel: Codable {
     let type: Int
     let price: String
 }
+
+struct LiveModel: Codable {
+    let timestamp: String
+    let high: String
+    let low: String
+    let open: Double
+}

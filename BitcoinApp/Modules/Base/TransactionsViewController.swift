@@ -11,16 +11,21 @@ class TransactionsViewController: BaseViewController {
     
     var transactionsArray = [TransactionsModel]()
     
-    
     // MARK: - Properties
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
     lazy var headerView = HeaderView()
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.register(TransactionsTableViewCell.self, forCellReuseIdentifier: TransactionsTableViewCell.cellIdentifier())
-        table.delegate = self; table.dataSource = self; table.separatorStyle = .none
+        table.delegate = self; table.dataSource = self; //table.separatorStyle = .none
         let header = headerView
-        header.frame.size = CGSize(width: 0, height: 100)
+        header.frame.size = CGSize(width: 0, height: 80)
         table.tableHeaderView = header
+        table.refreshControl = refreshControl
         return table
     }()
     
@@ -30,7 +35,15 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
-        //getTransactions()
+        getLive()
+    }
+    
+    
+    // MARK: - Simple Functions
+    func addingHeader(model: LiveModel) {
+        headerView.date.text = "".convertTimesTamp(model.timestamp)
+        headerView.highTitle.text = "High: " + model.high + " $"
+        headerView.lowTitle.text = "Low: " + model.low + " $"
     }
     
     
@@ -41,6 +54,12 @@ class TransactionsViewController: BaseViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    
+    // MARK: - Actions
+    @objc private func refresh() -> Void {
+        refreshControl.endRefreshing()
     }
 }
 
@@ -68,11 +87,19 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
 
 // MARK: - Parser
 extension TransactionsViewController {
-    private func getTransactions() -> Void {
+    private func getLive() -> Void {
         showHUD()
-        let parameter: [String : Any] = ["offset": 0,
-                                         "limit": 500,
-                                         "sort": "desc"]
+        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/ticker") { (result: LiveModel?, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.addingHeader(model: result!)
+            self.getTransactions()
+        }
+    }
+    private func getTransactions() -> Void {
+        let parameter: [String : Any] = ["offset": 0, "limit": 500, "sort": "desc"]
         
         ParseManager.shared.getRequest(url: "www.bitstamp.net/api/transactions/", parameters: parameter) { (result: [TransactionsModel]?, error) in
             self.dismissHUD()
