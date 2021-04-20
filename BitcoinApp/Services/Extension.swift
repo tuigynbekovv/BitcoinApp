@@ -31,7 +31,7 @@ extension UIView {
 }
 
 
-extension UIViewController{
+extension UIViewController {
     func showHUD() -> Void {
         MBProgressHUD.showAdded(to: self.view, animated: true)
     }
@@ -40,3 +40,12 @@ extension UIViewController{
     }
 }
 
+
+extension String {
+    func convertTimesTamp(_ str: String) -> String {
+        let nsdate = NSDate(timeIntervalSince1970: Double(str)!)
+        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
+        return dayTimePeriodFormatter.string(from: nsdate as Date)
+    }
+}

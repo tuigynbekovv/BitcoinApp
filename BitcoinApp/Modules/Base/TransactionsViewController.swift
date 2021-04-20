@@ -30,11 +30,11 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
-        getTransactions()
+        //getTransactions()
     }
     
     
-    // MARK: - SetupViews
+    // MARK: - Autolayout
     func setupViews() {
         view.addSubviews([tableView])
         
@@ -48,10 +48,12 @@ class TransactionsViewController: BaseViewController {
 // MARK: - UITableView Protocols
 extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return transactionsArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionsTableViewCell.cellIdentifier(), for: indexPath) as! TransactionsTableViewCell
+        
+        cell.configure(model: transactionsArray[indexPath.row])
         
         return cell
     }
