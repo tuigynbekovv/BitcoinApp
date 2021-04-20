@@ -9,6 +9,9 @@ import UIKit
 
 class TransactionsViewController: BaseViewController {
     
+    var transactionsArray = [TransactionsModel]()
+    
+    
     // MARK: - Properties
     lazy var headerView = HeaderView()
     lazy var tableView: UITableView = {
@@ -27,6 +30,7 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
+        getTransactions()
     }
     
     
@@ -46,18 +50,36 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TransactionsTableViewCell.cellIdentifier(), for: indexPath) as! TransactionsTableViewCell
         
         return cell
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+
+// MARK: - Parser
+extension TransactionsViewController {
+    private func getTransactions() -> Void {
+        showHUD()
+        let parameter: [String : Any] = ["offset": 0,
+                                         "limit": 500,
+                                         "sort": "desc"]
+        
+        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/transactions/", parameters: parameter) { (result: [TransactionsModel]?, error) in
+            self.dismissHUD()
+            if let error = error {
+                print(error)
+                return
+            }
+            self.transactionsArray = result!
+            self.tableView.reloadData()
+        }
     }
 }

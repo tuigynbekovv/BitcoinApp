@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+
 
 extension UITableViewCell {
     static func cellIdentifier() -> String {
@@ -18,6 +20,7 @@ extension UICollectionViewCell {
     }
 }
 
+
 //  MARK: - UIView
 extension UIView {
     func addSubviews(_ views : [UIView]) -> Void {
@@ -26,3 +29,14 @@ extension UIView {
         }
     }
 }
+
+
+extension UIViewController{
+    func showHUD() -> Void {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+    }
+    func dismissHUD() -> Void {
+        MBProgressHUD.hide(for: self.view, animated: true)
+    }
+}
+

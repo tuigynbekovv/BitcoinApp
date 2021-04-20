@@ -14,7 +14,7 @@ enum Endpoints: EndpointType {
     case deleteRequest(url: String, parameters: Parameters?, token: String?)
 
     var baseUrl: URL {
-        return URL(string: "")!
+        return URL(string: "https:/")!
     }
 
     var path: String {
