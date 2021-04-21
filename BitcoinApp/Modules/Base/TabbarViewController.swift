@@ -31,10 +31,8 @@ class TabbarViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func setupTabbarParameters() {
-        tabBar.tintColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
-        tabBar.unselectedItemTintColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
-        tabBar.backgroundColor = .white
-        tabBar.barTintColor = .white
+        tabBar.tintColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1); tabBar.unselectedItemTintColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
+        tabBar.backgroundColor = .white; tabBar.barTintColor = .white
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: Font.mullerRegular, size: 12)!],
                                                          for: .normal)
     }
