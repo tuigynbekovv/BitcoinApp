@@ -13,7 +13,7 @@ class TransactionsTableViewCell: UITableViewCell {
     lazy var icon = UIImageView(image: #imageLiteral(resourceName: "bitcoin-1"))
     lazy var transactionID: UILabel = {
         let label = UILabel()
-        label.text = "bitcoin_id"; label.textColor = .black; label.font = UIFont.init(name: Font.mullerMedium, size: 18);
+        label.text = "bitcoin_id"; label.textColor = .black; label.font = UIFont.init(name: Font.mullerRegular, size: 16);
         return label
     }()
     lazy var date: UILabel = {
@@ -28,7 +28,7 @@ class TransactionsTableViewCell: UITableViewCell {
     }()
     lazy var amount: UILabel = {
         let label = UILabel()
-        label.text = "5 шт"; label.textColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1); label.font = UIFont.init(name: Font.mullerMedium, size: 15);
+        label.text = "5 шт"; label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1); label.font = UIFont.init(name: Font.mullerMedium, size: 14);
         return label
     }()
     lazy var type: UILabel = {
@@ -83,13 +83,13 @@ class TransactionsTableViewCell: UITableViewCell {
     // MARK: - Configure
     func configure(model: TransactionsModel) -> Void {
         transactionID.text = "ID:\(model.tid)"
-        date.text = "".convertTimesTamp(model.date)
+        date.text = convertTimesTamp(model.date)
         price.text = model.price + " $"
-        amount.text = model.amount + " amt"
+        amount.text = model.amount + " шт"
         if model.type == 0 {
-            type.text = "Buy"; type.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            type.text = "куплено"; type.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         }else {
-            type.text = "Sell"; type.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            type.text = "продано"; type.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         }
     }
 }

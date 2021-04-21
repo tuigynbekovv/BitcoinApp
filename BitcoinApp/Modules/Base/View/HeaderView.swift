@@ -15,14 +15,14 @@ class HeaderView: UIView {
         let label = UILabel()
         label.text = "-"
         label.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-        label.font = UIFont.init(name: Font.mullerRegular, size: 13)
+        label.font = UIFont.init(name: Font.mullerBold, size: 13)
         return label
     }()
     lazy var lowTitle: UILabel = {
         let label = UILabel()
         label.text = "-"
         label.textColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
-        label.font = UIFont.init(name: Font.mullerRegular, size: 13)
+        label.font = UIFont.init(name: Font.mullerBold, size: 13)
         return label
     }()
     lazy var date: UILabel = {
@@ -45,7 +45,7 @@ class HeaderView: UIView {
     
     // MARK: - Setup Autolayout
     func setupViews() {
-        backgroundColor = UIColor.orange.withAlphaComponent(0.5)
+        backgroundColor = UIColor.orange.withAlphaComponent(0.3)
         
         addSubviews([iconLive,highTitle,lowTitle, date])
         iconLive.snp.makeConstraints { (make) in

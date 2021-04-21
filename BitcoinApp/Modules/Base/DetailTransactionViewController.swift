@@ -9,10 +9,36 @@ import UIKit
 
 class DetailTransactionViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
     }
+    
+    
+    // MARK: - Initialization
+    init(transactionID: Int) {
+        super.init(nibName: nil, bundle: nil)
+        
+        getTransactionInfo(ID: transactionID)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - Setup Autolayout
+    
+}
 
+
+// MARK: - Parser
+extension DetailTransactionViewController {
+    private func getTransactionInfo(ID: Int) {
+        
+    }
 }

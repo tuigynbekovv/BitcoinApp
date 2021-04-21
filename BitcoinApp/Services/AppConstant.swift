@@ -21,3 +21,19 @@ enum Type {
     case tenge
     case euro
 }
+
+
+enum Api {
+    static let ticker       = "www.bitstamp.net/api/ticker"
+    static let transactions = "www.bitstamp.net/api/transactions/"
+}
+
+
+enum Currency {
+    static let types = ["Доллор США", "Каз ТЕНГЕ", "ЕВРО"]
+}
+
+enum DefaultTitle {
+    static let notEnough = "суммы не хватает =("
+    static let price     = "Сейчас, цена за 1 биткоин: "
+}

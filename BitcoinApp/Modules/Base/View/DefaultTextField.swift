@@ -14,7 +14,7 @@ class DefaultTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
             
-        let space = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 0))
+        let space = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftView = space
         leftViewMode = .always
         

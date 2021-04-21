@@ -9,29 +9,29 @@ import UIKit
 
 class ConverterView: UIView {
 
-    var typeArray = ["Доллор США", "Каз ТЕНГЕ", "ЕВРО"]
+    //  MARK: - Properties
+    var typeArray = Currency.types
     var type: Type = .dollor
     var bitcoinPrice: Float = 0.0
         
-        
-    //  MARK: - Properties
+    
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self; picker.dataSource = self;
         return picker
     }()
     lazy var inputTextField: DefaultTextField = {
-        let field = DefaultTextField(); field.text = "1"; field.delegate = self
+        let field = DefaultTextField(); field.placeholder = "Введите сумму"; field.delegate = self
         return field
     }()
     lazy var outputTextField: DefaultTextField = {
-        let field = DefaultTextField(); field.isUserInteractionEnabled = false; field.text = "введите сумму"
+        let field = DefaultTextField(); field.isUserInteractionEnabled = false; field.text = DefaultTitle.notEnough
         return field
     }()
     lazy var typeTextField: DefaultTextField = {
         let field = DefaultTextField()
-        field.inputView = pickerView; field.text = "Доллор США";
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15)); image.image = #imageLiteral(resourceName: "down-arrow");
+        field.inputView = pickerView; field.text = Currency.types[0];
+        let image = UIImageView(frame: CGRect(x: -8.0, y: 0.0, width: 15, height: 15)); image.image = #imageLiteral(resourceName: "down-arrow-2");
         field.rightView = image; field.rightViewMode = .always;
         return field
     }()
@@ -42,6 +42,7 @@ class ConverterView: UIView {
         super.init(frame: frame)
         
         backgroundColor = UIColor.orange.withAlphaComponent(0.3)
+        layer.cornerRadius = 6
         
         addSubviews([inputTextField, outputTextField,typeTextField])
         
@@ -69,20 +70,20 @@ class ConverterView: UIView {
     }
     
     
-    // MARK: - Simple funct
+    // MARK: - Simple functions
     func calculate(text: String) {
         if text != "" {
             if type == .dollor {
                 let ans = Float(text)! / bitcoinPrice
-                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = DefaultTitle.notEnough)
             }
             if type == .tenge {
                 let ans = Float(text)! / 430 / bitcoinPrice
-                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = DefaultTitle.notEnough)
             }
             if type == .euro {
                 let ans = Float(text)! * 1.2 / bitcoinPrice
-                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = DefaultTitle.notEnough)
             }
         }
     }
