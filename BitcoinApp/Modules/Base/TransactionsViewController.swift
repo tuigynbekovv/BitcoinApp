@@ -35,7 +35,7 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
-        getLive()
+//        getLive()
     }
     
     

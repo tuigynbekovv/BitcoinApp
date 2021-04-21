@@ -7,11 +7,12 @@
 
 import UIKit
 
-class DetailTransactionViewController: BaseViewController {
+class DetailTransactionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
     }
 
 }

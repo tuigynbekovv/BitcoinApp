@@ -9,5 +9,6 @@ target 'BitcoinApp' do
 
   pod 'SnapKit'
   pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'IQKeyboardManager'
 
 end

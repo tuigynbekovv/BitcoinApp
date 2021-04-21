@@ -20,4 +20,5 @@ struct LiveModel: Codable {
     let high: String
     let low: String
     let open: Double
+    let last: String
 }
