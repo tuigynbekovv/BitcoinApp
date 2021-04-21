@@ -10,6 +10,8 @@ import UIKit
 class ConverterView: UIView {
 
     var typeArray = ["Доллор США", "Каз ТЕНГЕ", "ЕВРО"]
+    var type: Type = .dollor
+    var bitcoinPrice: Float = 0.0
         
         
     //  MARK: - Properties
@@ -18,12 +20,14 @@ class ConverterView: UIView {
         picker.delegate = self; picker.dataSource = self;
         return picker
     }()
-    
     lazy var inputTextField: DefaultTextField = {
-        let field = DefaultTextField(); field.text = "1";
+        let field = DefaultTextField(); field.text = "1"; field.delegate = self
         return field
     }()
-    lazy var outputTextField = DefaultTextField()
+    lazy var outputTextField: DefaultTextField = {
+        let field = DefaultTextField(); field.isUserInteractionEnabled = false; field.text = "введите сумму"
+        return field
+    }()
     lazy var typeTextField: DefaultTextField = {
         let field = DefaultTextField()
         field.inputView = pickerView; field.text = "Доллор США";
@@ -43,25 +47,44 @@ class ConverterView: UIView {
         
         inputTextField.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(15)
-            make.width.equalToSuperview().multipliedBy(0.33)
+            make.width.equalToSuperview().multipliedBy(0.38)
             make.height.equalTo(40)
         }
         outputTextField.snp.makeConstraints { (make) in
             make.top.equalTo(inputTextField.snp.bottom).offset(5)
             make.left.equalTo(inputTextField.snp.left)
-            make.width.equalTo(inputTextField.snp.width)
+            make.right.equalToSuperview().offset(-15)
             make.height.equalTo(inputTextField.snp.height)
             make.bottom.equalToSuperview().offset(-15)
         }
         typeTextField.snp.makeConstraints { (make) in
             make.top.equalTo(inputTextField.snp.top)
             make.left.equalTo(inputTextField.snp.right).offset(10)
-            make.width.equalToSuperview().multipliedBy(0.45)
+            make.right.equalToSuperview().offset(-15)
             make.height.equalTo(40)
         }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // MARK: - Simple funct
+    func calculate(text: String) {
+        if text != "" {
+            if type == .dollor {
+                let ans = Float(text)! / bitcoinPrice
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+            }
+            if type == .tenge {
+                let ans = Float(text)! / 430 / bitcoinPrice
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+            }
+            if type == .euro {
+                let ans = Float(text)! * 1.2 / bitcoinPrice
+                ans >= 1 ? (outputTextField.text = "\(Int(ans)) шт") : (outputTextField.text = "суммы не хватает")
+            }
+        }
     }
 }
 
@@ -77,5 +100,18 @@ extension ConverterView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         typeTextField.text = typeArray[row]
+        if row == 0 {type = .dollor}; if row == 1 {type = .tenge}; if row == 2 {type = .euro}
+        calculate(text: inputTextField.text ?? "")
+    }
+}
+
+
+// MARK: - UITextfield Protocols
+extension ConverterView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        DispatchQueue.main.asyncDeduped(target: self, after: 1) { [weak self] in
+            self!.calculate(text: textField.text ?? "")
+        }
+        return true
     }
 }
