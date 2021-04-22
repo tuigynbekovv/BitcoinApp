@@ -37,6 +37,6 @@ class BaseViewController: UIViewController {
     
     func setupNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navTitle)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: #imageLiteral(resourceName: "bitcoin")))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: #imageLiteral(resourceName: "bitcoin")))
     }
 }

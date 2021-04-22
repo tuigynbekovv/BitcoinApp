@@ -63,7 +63,7 @@ extension ConverterViewController {
                 print(error)
                 return
             }
-            self.date.text = "".convertTimesTamp(result!.timestamp)
+            self.date.text = self.convertTimesTamp(result!.timestamp)
             self.price.text = DefaultTitle.price + result!.last + " $"
             self.converterView.bitcoinPrice = Float(result!.last)!
         }

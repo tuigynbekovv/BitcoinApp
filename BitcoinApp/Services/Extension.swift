@@ -17,6 +17,7 @@ extension UITableViewCell {
     func convertTimesTamp(_ str: String) -> String {
         let nsdate = NSDate(timeIntervalSince1970: Double(str)!)
         let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.locale = Locale(identifier: "ru_RU")
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
         return dayTimePeriodFormatter.string(from: nsdate as Date)
     }
@@ -44,16 +45,7 @@ extension UIViewController {
     func convertTimesTamp(_ str: String) -> String {
         let nsdate = NSDate(timeIntervalSince1970: Double(str)!)
         let dayTimePeriodFormatter = DateFormatter()
-        dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
-        return dayTimePeriodFormatter.string(from: nsdate as Date)
-    }
-}
-
-
-extension String {
-    func convertTimesTamp(_ str: String) -> String {
-        let nsdate = NSDate(timeIntervalSince1970: Double(str)!)
-        let dayTimePeriodFormatter = DateFormatter()
+        dayTimePeriodFormatter.locale = Locale(identifier: "ru_RU")
         dayTimePeriodFormatter.dateFormat = "MMM dd YYYY hh:mm a"
         return dayTimePeriodFormatter.string(from: nsdate as Date)
     }

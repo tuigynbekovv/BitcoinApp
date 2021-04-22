@@ -23,7 +23,7 @@ class TransactionsViewController: BaseViewController {
         table.register(TransactionsTableViewCell.self, forCellReuseIdentifier: TransactionsTableViewCell.cellIdentifier())
         table.delegate = self; table.dataSource = self; //table.separatorStyle = .none
         let header = headerView
-        header.frame.size = CGSize(width: 0, height: 80)
+        header.frame.size = CGSize(width: 0, height: 65)
         table.tableHeaderView = header
         table.refreshControl = refreshControl
         return table
@@ -60,7 +60,7 @@ class TransactionsViewController: BaseViewController {
     
     // MARK: - Actions
     @objc private func refresh() -> Void {
-        refreshControl.endRefreshing()
+        getLive()
     }
 }
 
@@ -79,7 +79,7 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let vc = DetailTransactionViewController(transactionID: transactionsArray[indexPath.row].tid)
+        let vc = DetailTransactionViewController(transactionModel: transactionsArray[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -112,6 +112,7 @@ extension TransactionsViewController {
             }
             self.transactionsArray = result!
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }

@@ -30,7 +30,7 @@ enum Api {
 
 
 enum Currency {
-    static let types = ["Доллор США", "Каз ТЕНГЕ", "ЕВРО"]
+    static let types = ["USA", "TENGE", "EURO"]
 }
 
 enum DefaultTitle {

@@ -27,7 +27,7 @@ class HeaderView: UIView {
     }()
     lazy var date: UILabel = {
         let label = UILabel()
-        label.text = "-"; label.textColor = #colorLiteral(red: 0.4629748292, green: 0.4629748292, blue: 0.4629748292, alpha: 1); label.font = UIFont.init(name: Font.mullerRegular, size: 14);
+        label.text = "-"; label.textColor = #colorLiteral(red: 0.4629748292, green: 0.4629748292, blue: 0.4629748292, alpha: 1); label.font = UIFont.init(name: Font.mullerRegular, size: 13);
         return label
     }()
     
@@ -49,6 +49,7 @@ class HeaderView: UIView {
         
         addSubviews([iconLive,highTitle,lowTitle, date])
         iconLive.snp.makeConstraints { (make) in
+            make.width.height.equalTo(22)
             make.top.left.equalToSuperview().offset(15)
         }
         highTitle.snp.makeConstraints { (make) in
@@ -60,8 +61,8 @@ class HeaderView: UIView {
             make.right.equalToSuperview().offset(-15)
         }
         date.snp.makeConstraints { (make) in
-            make.top.equalTo(iconLive.snp.bottom).offset(10)
-            make.left.equalToSuperview().offset(15)
+            make.centerY.equalTo(iconLive.snp.centerY)
+            make.left.equalTo(iconLive.snp.right).offset(5)
         }
     }
 }

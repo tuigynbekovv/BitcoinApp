@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupWindow()
         
+        setupInterfaceStyle()
+        
         return true
     }
     
@@ -45,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func setupNeeds() {
+    func setupInterfaceStyle() {
         
         if #available(iOS 13.0, *) { window?.overrideUserInterfaceStyle = .light }
         
