@@ -17,6 +17,10 @@
 		531C1999262EA3A700A97938 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531C1992262EA3A700A97938 /* Router.swift */; };
 		531C199A262EA3A700A97938 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531C1993262EA3A700A97938 /* Parser.swift */; };
 		531C199F262EA45500A97938 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531C199E262EA45500A97938 /* Models.swift */; };
+		531C19CC262EC00A00A97938 /* DetailTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531C19CB262EC00A00A97938 /* DetailTransactionViewController.swift */; };
+		5333ADF7263015690053B352 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333ADF6263015690053B352 /* ConverterViewController.swift */; };
+		5333ADFB263017B60053B352 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333ADFA263017B60053B352 /* ConverterView.swift */; };
+		5333ADFE2630187C0053B352 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5333ADFD2630187C0053B352 /* DefaultTextField.swift */; };
 		5355315A262D5E9500975F91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53553159262D5E9500975F91 /* AppDelegate.swift */; };
 		53553163262D5E9800975F91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53553162262D5E9800975F91 /* Assets.xcassets */; };
 		53553166262D5E9800975F91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53553164262D5E9800975F91 /* LaunchScreen.storyboard */; };
@@ -47,6 +51,10 @@
 		531C1992262EA3A700A97938 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		531C1993262EA3A700A97938 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		531C199E262EA45500A97938 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		531C19CB262EC00A00A97938 /* DetailTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTransactionViewController.swift; sourceTree = "<group>"; };
+		5333ADF6263015690053B352 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
+		5333ADFA263017B60053B352 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		5333ADFD2630187C0053B352 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		53553156262D5E9500975F91 /* BitcoinApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53553159262D5E9500975F91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53553162262D5E9800975F91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,11 +168,13 @@
 		53E1E7DA262D5F7400F44E19 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				531C199C262EA42300A97938 /* Model */,
-				53E1E7DB262D5F7F00F44E19 /* View */,
 				53A64FF4262D672100E45408 /* BaseViewController.swift */,
 				53A64FEE262D616600E45408 /* TabbarViewController.swift */,
+				531C199C262EA42300A97938 /* Model */,
+				53E1E7DB262D5F7F00F44E19 /* View */,
 				53A64FF1262D631500E45408 /* TransactionsViewController.swift */,
+				531C19CB262EC00A00A97938 /* DetailTransactionViewController.swift */,
+				5333ADF6263015690053B352 /* ConverterViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -174,6 +184,8 @@
 			children = (
 				53A64FF8262D6F6E00E45408 /* TransactionsTableViewCell.swift */,
 				53A64FFB262D7EC800E45408 /* HeaderView.swift */,
+				5333ADFA263017B60053B352 /* ConverterView.swift */,
+				5333ADFD2630187C0053B352 /* DefaultTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,6 +361,8 @@
 				53E1E7EC262D609C00F44E19 /* Extension.swift in Sources */,
 				531C1995262EA3A700A97938 /* Result.swift in Sources */,
 				531C198A262EA39500A97938 /* ParseManager.swift in Sources */,
+				531C19CC262EC00A00A97938 /* DetailTransactionViewController.swift in Sources */,
+				5333ADF7263015690053B352 /* ConverterViewController.swift in Sources */,
 				53A64FFC262D7EC800E45408 /* HeaderView.swift in Sources */,
 				5355315A262D5E9500975F91 /* AppDelegate.swift in Sources */,
 				531C1994262EA3A700A97938 /* Response.swift in Sources */,
@@ -356,9 +370,11 @@
 				53E1E7DF262D601600F44E19 /* AppConstant.swift in Sources */,
 				53A64FEF262D616700E45408 /* TabbarViewController.swift in Sources */,
 				531C1999262EA3A700A97938 /* Router.swift in Sources */,
+				5333ADFB263017B60053B352 /* ConverterView.swift in Sources */,
 				531C1996262EA3A700A97938 /* NetworkResponse.swift in Sources */,
 				53A64FF5262D672100E45408 /* BaseViewController.swift in Sources */,
 				53A64FF9262D6F6E00E45408 /* TransactionsTableViewCell.swift in Sources */,
+				5333ADFE2630187C0053B352 /* DefaultTextField.swift in Sources */,
 				531C199A262EA3A700A97938 /* Parser.swift in Sources */,
 				531C199F262EA45500A97938 /* Models.swift in Sources */,
 				531C1997262EA3A700A97938 /* NetworkManager.swift in Sources */,

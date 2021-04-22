@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        setupInterfaceStyle()
         setupWindow()
         
         return true
@@ -43,8 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func setupNeeds() {
+    func setupInterfaceStyle() {
         
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 1.5))
         if #available(iOS 13.0, *) { window?.overrideUserInterfaceStyle = .light }
         
     }

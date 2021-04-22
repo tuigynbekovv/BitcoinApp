@@ -9,9 +9,9 @@ import UIKit
 
 class TransactionsViewController: BaseViewController {
     
+    // MARK: - Properties
     var transactionsArray = [TransactionsModel]()
     
-    // MARK: - Properties
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -23,7 +23,7 @@ class TransactionsViewController: BaseViewController {
         table.register(TransactionsTableViewCell.self, forCellReuseIdentifier: TransactionsTableViewCell.cellIdentifier())
         table.delegate = self; table.dataSource = self; //table.separatorStyle = .none
         let header = headerView
-        header.frame.size = CGSize(width: 0, height: 80)
+        header.frame.size = CGSize(width: 0, height: 65)
         table.tableHeaderView = header
         table.refreshControl = refreshControl
         return table
@@ -35,15 +35,16 @@ class TransactionsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupViews()
+        
         getLive()
     }
     
     
     // MARK: - Simple Functions
     func addingHeader(model: LiveModel) {
-        headerView.date.text = "".convertTimesTamp(model.timestamp)
-        headerView.highTitle.text = "High: " + model.high + " $"
-        headerView.lowTitle.text = "Low: " + model.low + " $"
+        headerView.date.text = convertTimesTamp(model.timestamp)
+        headerView.highTitle.text = "high:  " + model.high + " $"
+        headerView.lowTitle.text = "low:  " + model.low + " $"
     }
     
     
@@ -59,7 +60,7 @@ class TransactionsViewController: BaseViewController {
     
     // MARK: - Actions
     @objc private func refresh() -> Void {
-        refreshControl.endRefreshing()
+        getLive()
     }
 }
 
@@ -78,6 +79,8 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let vc = DetailTransactionViewController(transactionModel: transactionsArray[indexPath.row])
+        navigationController?.pushViewController(vc, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -89,7 +92,7 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
 extension TransactionsViewController {
     private func getLive() -> Void {
         showHUD()
-        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/ticker") { (result: LiveModel?, error) in
+        ParseManager.shared.getRequest(url: Api.ticker) { (result: LiveModel?, error) in
             if let error = error {
                 print(error)
                 return
@@ -101,7 +104,7 @@ extension TransactionsViewController {
     private func getTransactions() -> Void {
         let parameter: [String : Any] = ["offset": 0, "limit": 500, "sort": "desc"]
         
-        ParseManager.shared.getRequest(url: "www.bitstamp.net/api/transactions/", parameters: parameter) { (result: [TransactionsModel]?, error) in
+        ParseManager.shared.getRequest(url: Api.transactions, parameters: parameter) { (result: [TransactionsModel]?, error) in
             self.dismissHUD()
             if let error = error {
                 print(error)
@@ -109,6 +112,7 @@ extension TransactionsViewController {
             }
             self.transactionsArray = result!
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }

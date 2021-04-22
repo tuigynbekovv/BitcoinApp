@@ -7,14 +7,12 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: ScrollViewController {
     
     // MARK: - Properties
     lazy var navTitle: UILabel = {
         let label = UILabel()
-        label.text = "Bitcoins"
-        label.font = UIFont.init(name: Font.mullerBold, size: 13)
-        label.textColor = .black
+        label.text = "Bitcoins"; label.font = UIFont.init(name: Font.mullerBold, size: 13); label.textColor = .black
         label.sizeToFit()
         return label
     }()
@@ -25,7 +23,6 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        
         setupNavigation()
     }
     
@@ -37,6 +34,6 @@ class BaseViewController: UIViewController {
     
     func setupNavigation() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navTitle)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: #imageLiteral(resourceName: "bitcoin")))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: UIImageView(image: #imageLiteral(resourceName: "bitcoin")))
     }
 }
