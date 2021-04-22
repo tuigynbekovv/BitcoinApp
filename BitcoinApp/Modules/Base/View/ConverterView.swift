@@ -14,7 +14,6 @@ class ConverterView: UIView {
     var type: Type = .dollor
     var bitcoinPrice: Float = 0.0
         
-    
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self; picker.dataSource = self;
@@ -65,12 +64,13 @@ class ConverterView: UIView {
             make.height.equalTo(40)
         }
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    // MARK: - Simple functions
+    // MARK: - Functions
     func calculate(text: String) {
         if text != "" {
             if type == .dollor {

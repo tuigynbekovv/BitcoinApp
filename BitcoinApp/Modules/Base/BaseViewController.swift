@@ -12,9 +12,7 @@ class BaseViewController: ScrollViewController {
     // MARK: - Properties
     lazy var navTitle: UILabel = {
         let label = UILabel()
-        label.text = "Bitcoins"
-        label.font = UIFont.init(name: Font.mullerBold, size: 13)
-        label.textColor = .black
+        label.text = "Bitcoins"; label.font = UIFont.init(name: Font.mullerBold, size: 13); label.textColor = .black
         label.sizeToFit()
         return label
     }()
@@ -25,7 +23,6 @@ class BaseViewController: ScrollViewController {
         super.viewDidLoad()
         
         setupView()
-        
         setupNavigation()
     }
     

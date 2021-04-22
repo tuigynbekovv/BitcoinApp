@@ -18,9 +18,7 @@ class TabbarViewController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         
         setupTabbar()
-        
         setupTabbarParameters()
-        
         setupKeyboards()
     }
     
