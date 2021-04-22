@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: ScrollViewController {
     
     // MARK: - Properties
     lazy var navTitle: UILabel = {
